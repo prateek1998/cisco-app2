@@ -27,6 +27,9 @@
         <li class="nav-item">
           <a class="nav-link" href="{% url 'Parser_Page' %}">Cisco Configuration parser</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'Network_Page' %}">Network Data</a>
+        </li>	     
       </ul>
     </div>
   </div>
@@ -36,7 +39,7 @@
 
 <!-- Background -->
 <style>
-  .container {
+.container {
   position: relative;
   text-align: left;
   color: white;
@@ -47,6 +50,12 @@
   position: absolute;
   top: 90px;
   left: 16px;
+}
+
+.time_container {
+  position: absolute;
+  top: 60px;
+  right: 0px;
 }
 
 .upload_file{
@@ -61,6 +70,3 @@
 </div>
 </body>
 </html>
-
-
-
