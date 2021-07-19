@@ -23,7 +23,8 @@ def Network_Page(request):
     return render(request, 'Network_Page.html')
 
 def delete_file():
-    os.remove('/home/ec2-user/webpage/Cisco_Parser/TEMP_FILE_STORAGE/interface_testing.csv')
+    os.remove(os.path.join(BASE_DIR,'TEMP_FILE_STORAGE/interface_testing.xlsx'))
+    # os.remove('/home/ec2-user/webpage/Cisco_Parser/TEMP_FILE_STORAGE/interface_testing.csv')
 
 def convert_each_uploaded_file_readlines_to_string(list_variable):
     str1 = "" 
@@ -36,6 +37,8 @@ def upload_read(request):
     global running_configuration_list
     running_configuration_list = []
     try:
+        checklistOptions = request.POST.getlist('checklist[]')
+        # print(checklistOptions)
         f = request.FILES['running_config']
         if "." in f.name[-4]:
             hostname = f.name[0:-4]
@@ -47,13 +50,13 @@ def upload_read(request):
             running_configuration_list += [each_uploaded_file_readlines.decode().strip("\n").strip("\r")]
         running_configuration_list_read = convert_each_uploaded_file_readlines_to_string(running_configuration_list)
         cisco_conf_parser.cisco_service_parser(running_configuration_list_read)
-        final_config = interface_ciscoconfparse.main(running_configuration_list)
+        final_config = interface_ciscoconfparse.main(running_configuration_list, checklistOptions)
 
-        with open(os.path.join(BASE_DIR,'TEMP_FILE_STORAGE/interface_testing.csv'), 'rb') as fq_read_bytes:
+        with open(os.path.join(BASE_DIR,'TEMP_FILE_STORAGE/interface_testing.xlsx'), 'rb') as fq_read_bytes:
             data_bytes = fq_read_bytes.read()
         
         response = HttpResponse(data_bytes, content_type='text/html; charset=UTF-8')
-        response['Content-Disposition'] = 'attachment; filename='+hostname+'.csv'
+        response['Content-Disposition'] = 'attachment; filename='+hostname+'.xlsx'
         delete_file()
         return response
         return render(request, 'Parser_Page.html')
