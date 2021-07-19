@@ -2,6 +2,7 @@ from ciscoconfparse import CiscoConfParse
 import pandas
 import os
 import openpyxl
+from openpyxl.styles import Font
 import string
   
 from pathlib import Path
@@ -177,6 +178,7 @@ def main(file_name, checklistOptions):
     for count,head in enumerate(checklistOptions):
         count = count + 1
         sheet.cell(row = row, column = count).value = head
+        sheet.cell(row = row, column = count).font = Font(bold=True)
         # print(head, count)
     row = row + 1 
     for key, items in empty_dic.items():
