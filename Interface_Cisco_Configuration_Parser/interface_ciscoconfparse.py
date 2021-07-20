@@ -175,7 +175,13 @@ def main(file_name, checklistOptions):
     wb.active = 1
     sheet = wb.active
     row = 1
-    for count,head in enumerate(checklistOptions):
+    conf_header = ['NTP','AAA','LOGS','CLOCK INFORMATION','SERVICES','SNMP']
+    finalList = []
+    for header in checklistOptions:
+        if header not in conf_header:
+            finalList.append(header)
+    # print(finalList)
+    for count,head in enumerate(finalList):
         count = count + 1
         sheet.cell(row = row, column = count).value = head
         sheet.cell(row = row, column = count).font = Font(bold=True)
