@@ -49,7 +49,7 @@ def upload_read(request):
         for each_uploaded_file_readlines in uploaded_file_readlines_list:
             running_configuration_list += [each_uploaded_file_readlines.decode().strip("\n").strip("\r")]
         running_configuration_list_read = convert_each_uploaded_file_readlines_to_string(running_configuration_list)
-        cisco_conf_parser.cisco_service_parser(running_configuration_list_read)
+        cisco_conf_parser.cisco_service_parser(running_configuration_list_read, checklistOptions)
         final_config = interface_ciscoconfparse.main(running_configuration_list, checklistOptions)
 
         with open(os.path.join(BASE_DIR,'TEMP_FILE_STORAGE/interface_testing.xlsx'), 'rb') as fq_read_bytes:

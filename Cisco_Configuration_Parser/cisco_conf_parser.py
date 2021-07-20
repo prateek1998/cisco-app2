@@ -6,7 +6,8 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-def cisco_service_parser(reading_running_conf_read_string):
+def cisco_service_parser(reading_running_conf_read_string, checklistOptions):
+	# print(checklistOptions)
 	global switch_data
 	'''Find the location directory of the templates. Currently located at "textfsm_templates"'''
 	switch_data = {}
@@ -45,71 +46,77 @@ def cisco_service_parser(reading_running_conf_read_string):
 	sheet['B7'] = switch_data['cisco_show_run_ip_domain_name'][0]
 	count = 8
 
-	if len(switch_data['cisco_show_run_ntp'])>1:
-		#sheet['A'+ str(count)] = "\n"
-		sheet.insert_rows(count)
-		for each_switch_data in switch_data['cisco_show_run_ntp']:
-			count = count + 1
-			#print('A'+ str(count))
-			sheet['A'+ str(count)] = "NTP"
-			sheet['B'+ str(count)] = removeExtraSpace(each_switch_data[0])				
-			# writer.writerow(["NTP",each_switch_data[0]])
-	else:
-		pass
-	
-	if len(switch_data['cisco_show_run_aaa'])>1:
-		#sheet['A'+ str(count)] = "\n"
-		sheet.insert_rows(count+1)
-		for each_switch_data in switch_data['cisco_show_run_aaa']:
-			count = count + 1
-			#print('A'+ str(count+1))
-			sheet['A'+ str(count+1)] = "AAA"
-			sheet['B'+ str(count+1)] = removeExtraSpace(each_switch_data[0])
-			# writer.writerow(["AAA",each_switch_data[0]])
-	else:
-		pass
-	count = count + 1
+	if "NTP" in checklistOptions:
+		if len(switch_data['cisco_show_run_ntp'])>1:
+			#sheet['A'+ str(count)] = "\n"
+			sheet.insert_rows(count)
+			for each_switch_data in switch_data['cisco_show_run_ntp']:
+				count = count + 1
+				#print('A'+ str(count))
+				sheet['A'+ str(count)] = "NTP"
+				sheet['B'+ str(count)] = removeExtraSpace(each_switch_data[0])				
+				# writer.writerow(["NTP",each_switch_data[0]])
+		else:
+			pass
 
-	if len(switch_data['cisco_show_run_logging'])>1:
-		# sheet['A'+ str(count)] = "\n"
-		sheet.insert_rows(count+2)
-		for each_switch_data in switch_data['cisco_show_run_logging']:
-			count = count + 1
-			sheet['A'+ str(count+1)] = "LOGGING"
-			sheet['B'+ str(count+1)] = removeExtraSpace(each_switch_data[0])
-	else:
-		pass
-	count = count + 1
+	if "AAA" in checklistOptions:
+		if len(switch_data['cisco_show_run_aaa'])>1:
+			#sheet['A'+ str(count)] = "\n"
+			sheet.insert_rows(count+1)
+			for each_switch_data in switch_data['cisco_show_run_aaa']:
+				count = count + 1
+				#print('A'+ str(count+1))
+				sheet['A'+ str(count+1)] = "AAA"
+				sheet['B'+ str(count+1)] = removeExtraSpace(each_switch_data[0])
+				# writer.writerow(["AAA",each_switch_data[0]])
+		else:
+			pass
+		count = count + 1
+
+	if "LOGS" in checklistOptions:
+		if len(switch_data['cisco_show_run_logging'])>1:
+			# sheet['A'+ str(count)] = "\n"
+			sheet.insert_rows(count+2)
+			for each_switch_data in switch_data['cisco_show_run_logging']:
+				count = count + 1
+				sheet['A'+ str(count+1)] = "LOGGING"
+				sheet['B'+ str(count+1)] = removeExtraSpace(each_switch_data[0])
+		else:
+			pass
+		count = count + 1
 		
-	if len(switch_data['cisco_show_run_clock'])>1:
-		sheet.insert_rows(count+2)
-		for each_switch_data in switch_data['cisco_show_run_clock']:
-			count = count + 1
-			sheet['A'+ str(count+1)] = "CLOCK INFORMATION"
-			sheet['B'+ str(count+1)] = removeExtraSpace(each_switch_data[0])			
-	else:
-		pass
-	count = count + 1
-
-	if len(switch_data['cisco_show_run_service'])>1:
-		sheet.insert_rows(count+2)
-		for each_switch_data in switch_data['cisco_show_run_service']:
-			count = count + 1
-			sheet['A'+ str(count+1)] = "SERVICES"
-			sheet['B'+ str(count+1)] = removeExtraSpace(each_switch_data[0])			
-	else:
-		pass
-	count = count + 1
+	if "CLOCK INFORMATION" in checklistOptions:
+		if len(switch_data['cisco_show_run_clock'])>1:
+			sheet.insert_rows(count+2)
+			for each_switch_data in switch_data['cisco_show_run_clock']:
+				count = count + 1
+				sheet['A'+ str(count+1)] = "CLOCK INFORMATION"
+				sheet['B'+ str(count+1)] = removeExtraSpace(each_switch_data[0])			
+		else:
+			pass
+		count = count + 1
 	
-	if len(switch_data['cisco_show_run_snmp'])>1:
-		sheet.insert_rows(count+2)
-		for each_switch_data in switch_data['cisco_show_run_snmp']:
-			count = count + 1
-			sheet['A'+ str(count+1)] = "SNMP"
-			sheet['B'+ str(count+1)] = removeExtraSpace(each_switch_data[0])		
-	else:
-		pass
+	if "SERVICES" in checklistOptions:
+		if len(switch_data['cisco_show_run_service'])>1:
+			sheet.insert_rows(count+2)
+			for each_switch_data in switch_data['cisco_show_run_service']:
+				count = count + 1
+				sheet['A'+ str(count+1)] = "SERVICES"
+				sheet['B'+ str(count+1)] = removeExtraSpace(each_switch_data[0])			
+		else:
+			pass
+		count = count + 1
 	
+	if "SNMP" in checklistOptions:
+		if len(switch_data['cisco_show_run_snmp'])>1:
+			sheet.insert_rows(count+2)
+			for each_switch_data in switch_data['cisco_show_run_snmp']:
+				count = count + 1
+				sheet['A'+ str(count+1)] = "SNMP"
+				sheet['B'+ str(count+1)] = removeExtraSpace(each_switch_data[0])		
+		else:
+			pass
+		
 	sheet.column_dimensions['A'].width = 20
 	sheet.column_dimensions['B'].width = 55
 	wb.save(os.path.join(BASE_DIR,'TEMP_FILE_STORAGE/interface_testing.xlsx'))

@@ -27,22 +27,36 @@
   }
 
   .table_container {
-    display: table;
-    height: 100%;
+    /* padding: 20px; */
+    margin-top: -30px;
     width: 100%;
   }
-  .table_container> div {
-  display: table-cell;
-  text-align: left;
-  vertical-align: middle;
-  width: 50%;
-}
+
+  .left_child {
+    width: 40%;
+    float: left;
+    padding: 20px;
+  }
+
+  .right_child {
+    width: 60%;
+    float: left;
+    padding: 20px;
+  }
+
+  .heading {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
   .left_align {
-    margin: 50%;
+    width: 60%;
+    float: left;
   }
 
   .right_align {
-    width: 50%;
+    width: 40%;
+    float: left;
   }
 
   /* Create a custom checkbox */
@@ -102,119 +116,151 @@
               {% csrf_token %}
               <input type="file" name="running_config"><br><br>
               <div class="table_container">
-                <div class="left_align">
-                  <label class="container_checkbox">Interface
-                    <input type="checkbox" name="checklist[]" checked="checked" value="INTERFACE" />
+                <div class="left_child">
+                  <div class="heading">
+                    <h2>Configuration Options</h2>
+                  </div>
+                  <label class="container_checkbox">NTP
+                    <input type="checkbox" name="checklist[]" checked="checked" value="NTP" />
                     <span class="checkmark"></span>
                   </label>
-                  <label class="container_checkbox">Description
-                    <input type="checkbox" name="checklist[]" checked="checked" value="DESCRIPTION" />
-                    <span class="checkmark"></span>
-                  </label>
-                  <label class="container_checkbox">IP Address
-                    <input type="checkbox" name="checklist[]" checked="checked" value="IP ADDRESS" />
-                    <span class="checkmark"></span>
-                  </label>
-                  <label class="container_checkbox">Switchport Mode
-                    <input type="checkbox" name="checklist[]" checked="checked" value="SWITCHPORT MODE" />
-                    <span class="checkmark"></span>
-                  </label>
-                  <label class="container_checkbox">Switchport Access Vlan
-                    <input type="checkbox" name="checklist[]" checked="checked" value="SWITCHPORT ACCESS VLAN" />
-                    <span class="checkmark"></span>
-                  </label>
-                  <label class="container_checkbox">Switchport Voice Vlan
-                    <input type="checkbox" name="checklist[]" checked="checked" value="SWITCHPORT VOICE VLAN" />
-                    <span class="checkmark"></span>
-                  </label>
-                  <label class="container_checkbox">Switchport Trunk Native
-                    <input type="checkbox" name="checklist[]" checked="checked" value="SWITCHPORT TRUNK NATIVE" />
-                    <span class="checkmark"></span>
-                  </label>
-                  <label class="container_checkbox">Switchport Trunk Allowed Vlan
-                    <input type="checkbox" name="checklist[]" checked="checked" value="SWITCHPORT TRUNK ALLOWED VLAN" />
-                    <span class="checkmark"></span>
-                  </label>
-                  <label class="container_checkbox">IP Helper Address
-                    <input type="checkbox" name="checklist[]" checked="checked" value="IP HELPER-ADDRESS" />
-                    <span class="checkmark"></span>
-                  </label>
-                  <label class="container_checkbox">Switchport Nonegotiate
-                    <input type="checkbox" name="checklist[]" checked="checked" value="SWITCHPORT NONEGOTIATE" />
+                  <label class="container_checkbox">AAA
+                    <input type="checkbox" name="checklist[]" checked="checked" value="AAA" />
                     <span class="checkmark"></span>
                   </label>
                   <label class="container_checkbox">Logging
-                    <input type="checkbox" name="checklist[]" checked="checked" value="LOGGING" />
+                    <input type="checkbox" name="checklist[]" checked="checked" value="LOGS" />
                     <span class="checkmark"></span>
                   </label>
-                  <label class="container_checkbox">Udld Port Aggressive
-                    <input type="checkbox" name="checklist[]" checked="checked" value="UDLD PORT AGGRESSIVE" />
+                  <label class="container_checkbox">Clock Information
+                    <input type="checkbox" name="checklist[]" checked="checked" value="CLOCK INFORMATION" />
                     <span class="checkmark"></span>
                   </label>
-                  <label class="container_checkbox">IP DHCP Snooping
-                    <input type="checkbox" name="checklist[]" checked="checked" value="IP DHCP SNOOPING" />
+                  <label class="container_checkbox">Services
+                    <input type="checkbox" name="checklist[]" checked="checked" value="SERVICES" />
                     <span class="checkmark"></span>
                   </label>
-                </div>
-                <div class="right_align">
-                  <label class="container_checkbox">Spanning-tree Link-type
-                    <input type="checkbox" name="checklist[]" checked="checked" value="SPANNING-TREE LINK TYPE" />
-                    <span class="checkmark"></span>
-                  </label>
-                  <label class="container_checkbox">Switchport Port-Security
-                    <input type="checkbox" name="checklist[]" checked="checked" value="SWITCHPORT PORT-SECURITY" />
-                    <span class="checkmark"></span>
-                  </label>
-                  <label class="container_checkbox">Device
-                    <input type="checkbox" name="checklist[]" checked="checked" value="DEVICE TRACKING" />
-                    <span class="checkmark"></span>
-                  </label>
-                  <label class="container_checkbox">SRR-Queue
-                    <input type="checkbox" name="checklist[]" checked="checked" value="SRR-QUEUE" />
-                    <span class="checkmark"></span>
-                  </label>
-                  <label class="container_checkbox">Spanning-Tree Portfast
-                    <input type="checkbox" name="checklist[]" checked="checked" value="SPANNING-TREE PORTFAST" />
-                    <span class="checkmark"></span>
-                  </label>
-                  <label class="container_checkbox">Spanning-Tree Bpduguard
-                    <input type="checkbox" name="checklist[]" checked="checked" value="SPANNING-TREE BPDUGUARD" />
-                    <span class="checkmark"></span>
-                  </label>
-                  <label class="container_checkbox">Spanning-Tree Guard Root
-                    <input type="checkbox" name="checklist[]" checked="checked" value="SPANNING-TREE GUARD ROOT" />
-                    <span class="checkmark"></span>
-                  </label>
-                  <label class="container_checkbox">Service Policy
-                    <input type="checkbox" name="checklist[]" checked="checked" value="SERVICE POLICY" />
-                    <span class="checkmark"></span>
-                  </label>
-                  <label class="container_checkbox">PIM Mode
-                    <input type="checkbox" name="checklist[]" checked="checked" value="PIM MODE" />
-                    <span class="checkmark"></span>
-                  </label>
-                  <label class="container_checkbox">Redirects
-                    <input type="checkbox" name="checklist[]" checked="checked" value="REDIRECTS" />
-                    <span class="checkmark"></span>
-                  </label>
-                  <label class="container_checkbox">Unreachables
-                    <input type="checkbox" name="checklist[]" checked="checked" value="UNREACHABLES" />
-                    <span class="checkmark"></span>
-                  </label>
-                  <label class="container_checkbox">Access Group
-                    <input type="checkbox" name="checklist[]" checked="checked" value="ACCESS-GROUP" />
-                    <span class="checkmark"></span>
-                  </label>
-                  <label class="container_checkbox">Shutdown
-                    <input type="checkbox" name="checklist[]" checked="checked" value="SHUTDOWN" />
+                  <label class="container_checkbox">SNMP
+                    <input type="checkbox" name="checklist[]" checked="checked" value="SNMP" />
                     <span class="checkmark"></span>
                   </label>
                 </div>
-              </div>
-              <input type="submit" value="Download configuration .csv format">
+                <div class="right_child">
+                  <div class="heading">
+                    <h2>Interface Options</h2>
+                  </div>
+                  <div class="left_align">
+                    <label class="container_checkbox">Interface
+                      <input type="checkbox" name="checklist[]" checked="checked" value="INTERFACE" />
+                      <span class="checkmark"></span>
+                    </label>
+                    <label class="container_checkbox">Description
+                      <input type="checkbox" name="checklist[]" checked="checked" value="DESCRIPTION" />
+                      <span class="checkmark"></span>
+                    </label>
+                    <label class="container_checkbox">IP Address
+                      <input type="checkbox" name="checklist[]" checked="checked" value="IP ADDRESS" />
+                      <span class="checkmark"></span>
+                    </label>
+                    <label class="container_checkbox">Switchport Mode
+                      <input type="checkbox" name="checklist[]" checked="checked" value="SWITCHPORT MODE" />
+                      <span class="checkmark"></span>
+                    </label>
+                    <label class="container_checkbox">Switchport Access Vlan
+                      <input type="checkbox" name="checklist[]" checked="checked" value="SWITCHPORT ACCESS VLAN" />
+                      <span class="checkmark"></span>
+                    </label>
+                    <label class="container_checkbox">Switchport Voice Vlan
+                      <input type="checkbox" name="checklist[]" checked="checked" value="SWITCHPORT VOICE VLAN" />
+                      <span class="checkmark"></span>
+                    </label>
+                    <label class="container_checkbox">Switchport Trunk Native
+                      <input type="checkbox" name="checklist[]" checked="checked" value="SWITCHPORT TRUNK NATIVE" />
+                      <span class="checkmark"></span>
+                    </label>
+                    <label class="container_checkbox">Switchport Trunk Allowed Vlan
+                      <input type="checkbox" name="checklist[]" checked="checked" value="SWITCHPORT TRUNK ALLOWED VLAN" />
+                      <span class="checkmark"></span>
+                    </label>
+                    <label class="container_checkbox">IP Helper Address
+                      <input type="checkbox" name="checklist[]" checked="checked" value="IP HELPER-ADDRESS" />
+                      <span class="checkmark"></span>
+                    </label>
+                    <label class="container_checkbox">Switchport Nonegotiate
+                      <input type="checkbox" name="checklist[]" checked="checked" value="SWITCHPORT NONEGOTIATE" />
+                      <span class="checkmark"></span>
+                    </label>
+                    <label class="container_checkbox">Logging
+                      <input type="checkbox" name="checklist[]" checked="checked" value="LOGGING" />
+                      <span class="checkmark"></span>
+                    </label>
+                    <label class="container_checkbox">Udld Port Aggressive
+                      <input type="checkbox" name="checklist[]" checked="checked" value="UDLD PORT AGGRESSIVE" />
+                      <span class="checkmark"></span>
+                    </label>
+                    <label class="container_checkbox">IP DHCP Snooping
+                      <input type="checkbox" name="checklist[]" checked="checked" value="IP DHCP SNOOPING" />
+                      <span class="checkmark"></span>
+                    </label>
+                  </div>
+                  <div class="right_align">
+                    <label class="container_checkbox">Spanning-tree Link-type
+                      <input type="checkbox" name="checklist[]" checked="checked" value="SPANNING-TREE LINK TYPE" />
+                      <span class="checkmark"></span>
+                    </label>
+                    <label class="container_checkbox">Switchport Port-Security
+                      <input type="checkbox" name="checklist[]" checked="checked" value="SWITCHPORT PORT-SECURITY" />
+                      <span class="checkmark"></span>
+                    </label>
+                    <label class="container_checkbox">Device
+                      <input type="checkbox" name="checklist[]" checked="checked" value="DEVICE TRACKING" />
+                      <span class="checkmark"></span>
+                    </label>
+                    <label class="container_checkbox">SRR-Queue
+                      <input type="checkbox" name="checklist[]" checked="checked" value="SRR-QUEUE" />
+                      <span class="checkmark"></span>
+                    </label>
+                    <label class="container_checkbox">Spanning-Tree Portfast
+                      <input type="checkbox" name="checklist[]" checked="checked" value="SPANNING-TREE PORTFAST" />
+                      <span class="checkmark"></span>
+                    </label>
+                    <label class="container_checkbox">Spanning-Tree Bpduguard
+                      <input type="checkbox" name="checklist[]" checked="checked" value="SPANNING-TREE BPDUGUARD" />
+                      <span class="checkmark"></span>
+                    </label>
+                    <label class="container_checkbox">Spanning-Tree Guard Root
+                      <input type="checkbox" name="checklist[]" checked="checked" value="SPANNING-TREE GUARD ROOT" />
+                      <span class="checkmark"></span>
+                    </label>
+                    <label class="container_checkbox">Service Policy
+                      <input type="checkbox" name="checklist[]" checked="checked" value="SERVICE POLICY" />
+                      <span class="checkmark"></span>
+                    </label>
+                    <label class="container_checkbox">PIM Mode
+                      <input type="checkbox" name="checklist[]" checked="checked" value="PIM MODE" />
+                      <span class="checkmark"></span>
+                    </label>
+                    <label class="container_checkbox">Redirects
+                      <input type="checkbox" name="checklist[]" checked="checked" value="REDIRECTS" />
+                      <span class="checkmark"></span>
+                    </label>
+                    <label class="container_checkbox">Unreachables
+                      <input type="checkbox" name="checklist[]" checked="checked" value="UNREACHABLES" />
+                      <span class="checkmark"></span>
+                    </label>
+                    <label class="container_checkbox">Access Group
+                      <input type="checkbox" name="checklist[]" checked="checked" value="ACCESS-GROUP" />
+                      <span class="checkmark"></span>
+                    </label>
+                    <label class="container_checkbox">Shutdown
+                      <input type="checkbox" name="checklist[]" checked="checked" value="SHUTDOWN" />
+                      <span class="checkmark"></span>
+                    </label>
+                  </div>
+                </div>
+                <input type="submit" value="Download configuration .csv format">
             </form>
           </div>
-
         </div>
     </section>
   </body>
